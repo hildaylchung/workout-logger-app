@@ -18,8 +18,8 @@ class NewSetRecord {
   final TextEditingController repsTextController = TextEditingController();
 
   NewSetRecord({this.exercise, this.weight, this.reps}) {
-    weightTextController.text = (weight ?? 0).toString();
-    repsTextController.text = (reps ?? 0).toString();
+    weightTextController.text = (weight ?? '').toString();
+    repsTextController.text = (reps ?? '').toString();
   }
 
   NewSetRecord.fromSetRecord(SetRecord record)

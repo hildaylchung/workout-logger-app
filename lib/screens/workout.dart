@@ -115,7 +115,7 @@ class EditableRecord extends ConsumerWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  hintText: 'Weight',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   suffixText: "kg",
                   suffixStyle: AppTextStyle.suffix),
             ),
@@ -129,7 +129,7 @@ class EditableRecord extends ConsumerWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  hintText: '',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
                   suffixText: "reps",
                   suffixStyle: AppTextStyle.suffix),
             ),
