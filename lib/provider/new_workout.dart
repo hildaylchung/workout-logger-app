@@ -125,7 +125,7 @@ class NewWorkoutStateNotifier extends Notifier<NewWorkoutState> {
 
       // return if no sets are completed
       if (state.workout!.sets.isEmpty) return false;
-      
+
       /// api call goes here
 
       state = state.copyWith(workout: state.workout);
