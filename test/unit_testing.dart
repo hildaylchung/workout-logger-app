@@ -1,4 +1,3 @@
-
 // Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
@@ -6,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:workout_logging_app/models/exercise.dart';
 import 'package:workout_logging_app/models/workout.dart';
 import 'package:workout_logging_app/utils/date.dart';
-
 
 void main() {
   test('Display workout set record', () {

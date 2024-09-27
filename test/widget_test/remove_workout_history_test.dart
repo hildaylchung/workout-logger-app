@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -8,7 +7,8 @@ import 'package:workout_logging_app/widgets/confirm_dialog.dart';
 import 'package:workout_logging_app/widgets/workout_list_item.dart';
 
 void main() {
-  testWidgets('Test Remove History Workout (with GoRouter and Provider)', (tester) async {
+  testWidgets('Test Remove History Workout (with GoRouter and Provider)',
+      (tester) async {
     await tester.pumpWidget(
       ProviderScope(
         child: MaterialApp.router(
