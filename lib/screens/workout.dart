@@ -110,6 +110,7 @@ class EditableRecord extends ConsumerWidget {
             widthFactor: 0.25,
             child: TextFormField(
               controller: record.weightTextController,
+              textAlign: TextAlign.right,
               decoration: InputDecoration(
                   fillColor: Colors.black12,
                   border: OutlineInputBorder(
@@ -124,6 +125,7 @@ class EditableRecord extends ConsumerWidget {
             widthFactor: 0.2,
             child: TextFormField(
               controller: record.repsTextController,
+              textAlign: TextAlign.right,
               decoration: InputDecoration(
                   fillColor: Colors.black12,
                   border: OutlineInputBorder(
