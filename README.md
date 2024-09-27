@@ -24,10 +24,32 @@ Some reused TextStyle are stored in textStyle.dart and route config are stored i
     - Able to display different history workouts
     - Remove History workout (with a simple confirm dialog here)
     - Add New Workout
-2. 
+2. Workout Screen
+    - 
 
+## Third party packages
+
+### Riverpods
+`flutter_riverpod`, `riverpod` and `hooks_riverpod` is used 
+
+| riverpod         | [![pub package](https://img.shields.io/pub/v/riverpod.svg?label=riverpod&color=blue)](https://pub.dartlang.org/packages/riverpod)                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| flutter_riverpod | [![pub package](https://img.shields.io/pub/v/riverpod.svg?label=flutter_riverpod&color=blue)](https://pub.dartlang.org/packages/flutter_riverpod) |
+
+[provider]: https://github.com/rrousselGit/provider
+[riverpod]: https://github.com/rrousselGit/riverpod
+[flutter_hooks]: https://github.com/rrousselGit/flutter_hooks
+[flutter_riverpod]: https://pub.dev/packages/flutter_riverpod
+
+### intl
+[![pub package](https://github.com/dart-lang/i18n/actions/workflows/intl.yml)](https://pub.dev/packages/intl)
+
+### GoRouter
 
 ### Sort imports
-`flutter pub run import_sorter:main`
+[![pub package]](https://pub.dartlang.org/packages/import_sorter)
+
+This package is used for sorting imports so that it looks neat
+Run by `flutter pub run import_sorter:main`
 
 ### 

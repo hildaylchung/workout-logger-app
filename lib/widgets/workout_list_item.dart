@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 import '../models/workout.dart';
 import '../provider/new_workout.dart';
 import '../provider/workout.dart';
-import '../textStyle.dart';
+import '../text_style.dart';
 import '../utils/date.dart';
 import '../widgets/confirm_dialog.dart';
 import 'decorated_cell_wrapper.dart';

@@ -1,19 +1,19 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Package imports:
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // Project imports:
 import '../models/exercise.dart';
 import '../models/workout.dart';
 import '../provider/new_workout.dart';
 import '../provider/workout.dart';
-import '../textStyle.dart';
+import '../text_style.dart';
 import '../utils/date.dart';
 
-class WorkoutScreen extends HookConsumerWidget {
+class WorkoutScreen extends ConsumerWidget {
   final WorkoutModel? workout;
 
   WorkoutScreen({super.key, this.workout});

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workout_logging_app/textStyle.dart';
+import 'package:workout_logging_app/text_style.dart';
 
 // Project imports:
 import '../models/workout.dart';
@@ -26,7 +26,7 @@ class WorkoutListScreen extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return WorkoutList(pastWorkouts: state.pastWorkouts!);
+    return WorkoutList(pastWorkouts: state.pastWorkouts);
   }
 }
 

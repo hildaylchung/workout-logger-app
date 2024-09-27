@@ -1,8 +1,4 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Project imports:
-import '../provider/new_workout.dart';
 import 'exercise.dart';
 
 class SetRecord {
