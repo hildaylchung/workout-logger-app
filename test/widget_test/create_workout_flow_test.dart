@@ -136,7 +136,7 @@ void main() {
 
     // check if content equals to newly added set
     final text = find.descendant(
-        of: allWorkoutListItems.last,
+        of: allWorkoutListItems.first,
         matching: find.text(
             "Set 1: ${testExercise.name} - ${randomWeight}kg x $randomReps reps"));
     expect(text, findsOne);

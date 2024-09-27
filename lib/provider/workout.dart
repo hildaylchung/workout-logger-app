@@ -44,7 +44,7 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
     // check key to edit/create new workout
     int index = state.pastWorkouts.indexWhere((p) => p.key == workout.key);
     if (index == -1) {
-      state = state.copyWith(pastWorkouts: [...state.pastWorkouts, workout]);
+      state = state.copyWith(pastWorkouts: [workout, ...state.pastWorkouts]);
     } else {
       state = state.copyWith(pastWorkouts: [
         ...state.pastWorkouts.sublist(0, index),
@@ -73,8 +73,8 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
       ];
 
       // use uuid or some key generator
-      DateTime workoutDate1 = DateTime(2024, 9, 25, 12, 0);
-      DateTime workoutDate2 = DateTime(2024, 9, 26, 13, 0);
+      DateTime workoutDate1 = DateTime(2024, 9, 26, 13, 0);
+      DateTime workoutDate2 = DateTime(2024, 9, 25, 12, 0);
       List<WorkoutModel> pastWorkouts = [
         WorkoutModel(
             workoutDate1.toIso8601String(), sampleWorkout1, workoutDate1),
