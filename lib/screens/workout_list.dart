@@ -52,20 +52,33 @@ class WorkoutList extends ConsumerWidget {
               child: Text("New+", style: AppTextStyle.actionButton))
         ],
       ),
-      body: ListView(
-          padding: const EdgeInsets.all(10),
-          children: pastWorkouts
-              .asMap()
-              .map((idx, w) => MapEntry(
-                  idx,
-                  Padding(
-                    padding: idx == 0
-                        ? EdgeInsets.zero
-                        : const EdgeInsets.symmetric(vertical: 8.0),
-                    child: WorkoutListItem(workout: w),
-                  )))
-              .values
-              .toList()),
+      body: pastWorkouts.isNotEmpty
+          ? ListView(
+              padding: const EdgeInsets.all(10),
+              children: pastWorkouts
+                  .asMap()
+                  .map((idx, w) => MapEntry(
+                      idx,
+                      Padding(
+                        padding: idx == 0
+                            ? EdgeInsets.zero
+                            : const EdgeInsets.symmetric(vertical: 8.0),
+                        child: WorkoutListItem(workout: w),
+                      )))
+                  .values
+                  .toList())
+          : const EmptyHistory(),
+    );
+  }
+}
+
+class EmptyHistory extends StatelessWidget {
+  const EmptyHistory({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text("Add Your First Workout!", style: AppTextStyle.pageTitle),
     );
   }
 }
