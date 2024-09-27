@@ -17,7 +17,7 @@ final List<ExerciseModel> exerciseChoices = [
 class ExerciseModel {
   String name;
 
-  // In real implementation, exercise should be assigned with key or uuid for precise comparision
+  // In real implementation, exercise should be assigned with key or uuid for precise comparison
   // Tips: instructions or videos can be added here
 
   @override
@@ -26,4 +26,7 @@ class ExerciseModel {
   }
 
   ExerciseModel(this.name);
+
+  @override
+  int get hashCode => name.hashCode;
 }
