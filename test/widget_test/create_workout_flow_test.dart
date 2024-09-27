@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:workout_logging_app/models/exercise.dart';
 import 'package:workout_logging_app/route.dart';
 import 'package:workout_logging_app/screens/workout.dart';
 import 'package:workout_logging_app/screens/workout_list.dart';
@@ -75,4 +76,69 @@ void main() {
         findsExactly(initialNumOfHistoryWorkouts));
   });
 
+  testWidgets('Test Save workout with one set (with GoRouter and Provider)',
+      (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        child: MaterialApp.router(
+          routerConfig: router,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // store initial number of history workout in a variable and compare later
+    final initialHistoryWorkoutsWidgets =
+        tester.widgetList(find.byType(WorkoutListItem));
+    final int initialNumOfHistoryWorkouts =
+        initialHistoryWorkoutsWidgets.length;
+
+    // go to New Workout Screen (tested in previous test)
+    final newWorkoutBtn = find.text('New+');
+    final newWorkoutResp = await tester.press(newWorkoutBtn);
+    await newWorkoutResp.up();
+    await tester.pumpAndSettle();
+    expect(find.byType(EditableRecord), findsOne);
+
+    // Select 'Bench press' in dropdown
+    final dropdown = find.byType(DropdownButtonFormField<String>);
+    expect(dropdown, findsOne);
+
+    final testExercise = benchPressExercise;
+    await tester.tap(dropdown.first);
+    await tester.pumpAndSettle();
+    final dropdownItem = find.text(testExercise.name).first;
+    await tester.tap(dropdownItem);
+    await tester.pumpAndSettle();
+
+    // Fill in weight & reps
+    final textFields = find.byType(TextFormField);
+    expect(textFields, findsExactly(2));
+    final weightTextField = textFields.first;
+    final repsTextField = textFields.last;
+
+    var randomWeight = Random().nextInt(999);
+    var randomReps = Random().nextInt(30);
+    await tester.enterText(weightTextField, randomWeight.toString());
+    await tester.enterText(repsTextField, randomReps.toString());
+    await tester.pump();
+
+    // click save button
+    final saveExerciseBtn = find.byType(SaveWorkoutButton);
+    final saveEmptyWorkoutResp = await tester.press(saveExerciseBtn);
+    await saveEmptyWorkoutResp.up();
+    await tester.pumpAndSettle();
+    expect(find.byType(WorkoutListScreen), findsOne);
+
+    // check if new workout is added
+    final allWorkoutListItems = find.byType(WorkoutListItem);
+    expect(allWorkoutListItems, findsExactly(initialNumOfHistoryWorkouts + 1));
+
+    // check if content equals to newly added set
+    final text = find.descendant(
+        of: allWorkoutListItems.last,
+        matching: find.text(
+            "Set 1: ${testExercise.name} - ${randomWeight}kg x $randomReps reps"));
+    expect(text, findsOne);
+  });
 }
