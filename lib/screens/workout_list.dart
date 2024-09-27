@@ -19,7 +19,9 @@ class WorkoutListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     HistoryWorkoutsState state = ref.watch(historyWorkoutProvider);
 
+    /// simulate data not yet fetched and api call is needed
     if (state.lastFetched == null) {
+      /// use Future.delayed to prevent changes at build error
       Future.delayed(Duration.zero, () {
         ref.read(historyWorkoutProvider.notifier).getPastWorkouts();
       });

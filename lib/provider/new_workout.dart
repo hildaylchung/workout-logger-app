@@ -62,7 +62,7 @@ class NewWorkoutModel {
 
   NewWorkoutModel.fromSavedWorkout(WorkoutModel m)
       : this(m.sets.map((s) => NewSetRecord.fromSetRecord(s)).toList(),
-      key: m.key, dateCreated: m.dateCreated);
+            key: m.key, dateCreated: m.dateCreated);
 }
 
 class NewWorkoutState {
@@ -98,7 +98,9 @@ class NewWorkoutStateNotifier extends Notifier<NewWorkoutState> {
   void initializeNewWorkout(WorkoutModel? m) {
     state = state.copyWith(
         workout: m == null
-            ? NewWorkoutModel([NewSetRecord()])
+            ? NewWorkoutModel([
+                NewSetRecord()
+              ]) // initialize new workout with a new set for user experience
             : NewWorkoutModel.fromSavedWorkout(m));
   }
 
@@ -106,8 +108,8 @@ class NewWorkoutStateNotifier extends Notifier<NewWorkoutState> {
     state = NewWorkoutState();
   }
 
-  /// using Textcontroller instead of setting value provider in TextFormField.onChange
-  /// to prevent screen updating and lose focus on textfields
+  /// using TextEditingController instead of setting value provider in TextFormField.onChange
+  /// to prevent screen updating and lose focus on textFields
   void syncTextFieldData() {
     for (NewSetRecord s in state.workout!.sets) {
       s.weight = int.tryParse(s.weightTextController.text);
@@ -122,7 +124,7 @@ class NewWorkoutStateNotifier extends Notifier<NewWorkoutState> {
       state.workout!.sets.removeWhere((s) => !s.isCompleted);
       state = state.copyWith(workout: state.workout);
 
-      // api call
+      /// api call goes here
       return true;
     } catch (err) {
       dbgPrint(err);
