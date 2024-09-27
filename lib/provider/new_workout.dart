@@ -122,9 +122,13 @@ class NewWorkoutStateNotifier extends Notifier<NewWorkoutState> {
     try {
       // remove in-completed sets
       state.workout!.sets.removeWhere((s) => !s.isCompleted);
-      state = state.copyWith(workout: state.workout);
 
+      // return if no sets are completed
+      if (state.workout!.sets.isEmpty) return false;
+      
       /// api call goes here
+
+      state = state.copyWith(workout: state.workout);
       return true;
     } catch (err) {
       dbgPrint(err);
