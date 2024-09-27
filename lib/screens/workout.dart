@@ -31,7 +31,7 @@ class WorkoutScreen extends ConsumerWidget {
       return Container();
     }
 
-    void save() {
+    Future<void> save() async {
       ref.read(newWorkoutProvider.notifier).syncTextFieldData();
 
       if (formKey.currentState != null && !formKey.currentState!.validate()) {
@@ -39,10 +39,12 @@ class WorkoutScreen extends ConsumerWidget {
       }
 
       // save into history
-      ref.read(newWorkoutProvider.notifier).saveWorkout();
-      ref
-          .read(historyWorkoutProvider.notifier)
-          .updateWorkoutToHistoryList(state.workout!.toWorkoutModel()!);
+      bool success = await ref.read(newWorkoutProvider.notifier).saveWorkout();
+      if (success) {
+        ref
+            .read(historyWorkoutProvider.notifier)
+            .updateWorkoutToHistoryList(state.workout!.toWorkoutModel()!);
+      }
     }
 
     return Scaffold(
@@ -161,7 +163,7 @@ class AddRecordButton extends ConsumerWidget {
 }
 
 class SaveWorkoutButton extends StatelessWidget {
-  final Function save;
+  final Future Function() save;
 
   const SaveWorkoutButton({super.key, required this.save});
 
@@ -169,9 +171,11 @@ class SaveWorkoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: ElevatedButton(
-            onPressed: () {
-              save();
-              context.pop();
+            onPressed: () async {
+              await save();
+              if (context.mounted) {
+                context.pop();
+              }
             },
             child: const Text("Save Workout")));
   }

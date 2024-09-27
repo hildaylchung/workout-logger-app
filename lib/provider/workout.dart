@@ -29,7 +29,7 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
 
   Future<void> deleteWorkout(String key) async {
     try {
-      // api calls
+      /// api call goes here
 
       // on success
       List<WorkoutModel> newArr = [...state.pastWorkouts];
@@ -40,8 +40,7 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
     }
   }
 
-  // should be Future<String?> if it is calling api for async handling
-  String? updateWorkoutToHistoryList(WorkoutModel workout) {
+  void updateWorkoutToHistoryList(WorkoutModel workout) {
     // check key to edit/create new workout
     int index = state.pastWorkouts.indexWhere((p) => p.key == workout.key);
     if (index == -1) {
@@ -53,14 +52,13 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
         ...state.pastWorkouts.sublist(index + 1, state.pastWorkouts.length),
       ]);
     }
-    return null;
   }
 
   Future<void> getPastWorkouts() async {
     try {
       // This is where you should add the api call for getting the data from server
 
-      // TODO move to somewhere else to allow add/delete
+      // TODO remove sample data and call from api
       List<SetRecord> sampleWorkout1 = [
         SetRecord(benchPressExercise, 40, 10),
         SetRecord(benchPressExercise, 45, 10),
