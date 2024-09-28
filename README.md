@@ -51,6 +51,17 @@ This package is a routing package and related code are stored in `route.dart` an
 This package is used for sorting imports so that imports are organized and neat
 Run by `flutter pub run import_sorter:main`
 
+## Testing
+Tests are added in `/test` directory which includes unit testing and some widget testing
+
+### Unit testing
+- Printing date format print string
+- Display of a set of exercise
+
+### Widget Tests
+- Test if screen are load correctly, with or without history data
+- Test the flow of creating a new workout, with or without completed set 
+- Test the flow of removing a workout history
 
 ## Future improvements
 - Connect to a api for data
