@@ -52,28 +52,27 @@ class WorkoutScreen extends ConsumerWidget {
           title: Text(workout != null
               ? "Workout at ${displayDateYYYYMMDDHHMM(workout!.dateCreated)}"
               : "New Workout")),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Form(
-          key: formKey,
-          child: ListView(children: [
-            ...state.workout!.sets
-                .asMap()
-                .map((idx, record) => MapEntry(
-                      idx,
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5.0),
-                        child: EditableRecord(
-                            key: Key(record.toString()),
-                            index: idx,
-                            record: record),
-                      ),
-                    ))
-                .values,
-            const AddRecordButton(),
-            SaveWorkoutButton(save: save),
-          ]),
-        ),
+      body: Form(
+        key: formKey,
+        child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            children: [
+              ...state.workout!.sets
+                  .asMap()
+                  .map((idx, record) => MapEntry(
+                        idx,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: EditableRecord(
+                              key: Key(record.toString()),
+                              index: idx,
+                              record: record),
+                        ),
+                      ))
+                  .values,
+              const AddRecordButton(),
+              SaveWorkoutButton(save: save),
+            ]),
       ),
     );
   }
@@ -87,66 +86,66 @@ class EditableRecord extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Wrap(
-        spacing: 8,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          FractionallySizedBox(
-            widthFactor: 0.4,
-            child: DropdownButtonFormField(
-              value: record.exercise?.name,
-              items: exerciseChoices
-                  .map((c) =>
-                      DropdownMenuItem(value: c.name, child: Text(c.name)))
-                  .toList(),
-              onChanged: (c) {
-                record.exercise =
-                    exerciseChoices.firstWhere((e) => e.name == c);
-                ref.read(newWorkoutProvider.notifier).updateSet(index, record);
+    final spacingWidget =
+        SizedBox(width: MediaQuery.of(context).size.width * 0.02);
+    return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Expanded(
+        flex: 2,
+        child: DropdownButtonFormField(
+          value: record.exercise?.name,
+          items: exerciseChoices
+              .map((c) => DropdownMenuItem(value: c.name, child: Text(c.name)))
+              .toList(),
+          onChanged: (c) {
+            record.exercise = exerciseChoices.firstWhere((e) => e.name == c);
+            ref.read(newWorkoutProvider.notifier).updateSet(index, record);
+          },
+        ),
+      ),
+      spacingWidget,
+      Expanded(
+        flex: 1,
+        child: TextFormField(
+          controller: record.weightTextController,
+          textAlign: TextAlign.right,
+          decoration: InputDecoration(
+              fillColor: Colors.black12,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixText: "kg",
+              suffixStyle: AppTextStyle.suffix),
+        ),
+      ),
+      spacingWidget,
+      Expanded(
+        flex: 1,
+        child: TextFormField(
+          controller: record.repsTextController,
+          textAlign: TextAlign.right,
+          decoration: InputDecoration(
+              fillColor: Colors.black12,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              suffixText: "reps",
+              suffixStyle: AppTextStyle.suffix),
+        ),
+      ),
+      spacingWidget,
+      SizedBox(
+          width: 25,
+          height: 25,
+          child: IconButton(
+              padding: EdgeInsets.zero,
+              visualDensity: const VisualDensity(vertical: -4),
+              onPressed: () {
+                ref.read(newWorkoutProvider.notifier).removeSet(index);
               },
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.25,
-            child: TextFormField(
-              controller: record.weightTextController,
-              textAlign: TextAlign.right,
-              decoration: InputDecoration(
-                  fillColor: Colors.black12,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixText: "kg",
-                  suffixStyle: AppTextStyle.suffix),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.2,
-            child: TextFormField(
-              controller: record.repsTextController,
-              textAlign: TextAlign.right,
-              decoration: InputDecoration(
-                  fillColor: Colors.black12,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixText: "reps",
-                  suffixStyle: AppTextStyle.suffix),
-            ),
-          ),
-          SizedBox(
-              width: 25,
-              height: 25,
-              child: IconButton(
-                  padding: EdgeInsets.zero,
-                  visualDensity: const VisualDensity(vertical: -4),
-                  onPressed: () {
-                    ref.read(newWorkoutProvider.notifier).removeSet(index);
-                  },
-                  icon: const Icon(Icons.remove_circle))),
-        ]);
+              icon: const Icon(Icons.remove_circle))),
+    ]);
   }
 }
 

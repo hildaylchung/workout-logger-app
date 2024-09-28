@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import '../text_style.dart';
 import '../models/workout.dart';
 import '../provider/history_workout.dart';
 import '../provider/new_workout.dart';
+import '../text_style.dart';
 import '../widgets/workout_list_item.dart';
 
 class WorkoutListScreen extends ConsumerWidget {
