@@ -55,5 +55,6 @@ Run by `flutter pub run import_sorter:main`
 ## Future improvements
 - Connect to a api for data
 - Add more workout exercises and allow selection from a separate dialog or page
+- Group sets under an exercise
 - Stylings of course :)
 
