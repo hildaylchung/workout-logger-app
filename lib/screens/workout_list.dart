@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workout_logging_app/text_style.dart';
 
 // Project imports:
+import '../text_style.dart';
 import '../models/workout.dart';
+import '../provider/history_workout.dart';
 import '../provider/new_workout.dart';
-import '../provider/workout.dart';
 import '../widgets/workout_list_item.dart';
 
 class WorkoutListScreen extends ConsumerWidget {

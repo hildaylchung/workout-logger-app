@@ -7,8 +7,8 @@ import 'package:go_router/go_router.dart';
 
 // Project imports:
 import '../models/workout.dart';
+import '../provider/history_workout.dart';
 import '../provider/new_workout.dart';
-import '../provider/workout.dart';
 import '../text_style.dart';
 import '../utils/date.dart';
 import '../widgets/confirm_dialog.dart';

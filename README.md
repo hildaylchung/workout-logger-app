@@ -1,6 +1,6 @@
 # workout_logging_app
 
-A new Flutter project for tracking user workout
+A new Flutter project for tracking users' workout sessions
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ This project made use of mainly `riverpod` and `GoRouter` packages for creating 
 
 Only following workout exercises are included for now: Barbell row, Bench press, Shoulder press, Deadlift, Squat and user will be able to choose them from a dropdown. 
 
-No Api is called in this project and sample data are returned from get function in provider for the current implementation.
+No Api is called in this project and sample data are returned from getter function in provider for the current implementation.
 
 ## Project Composition
 Project itself consists of several directories, such as models, providers, screens, widgets and utils.
@@ -16,8 +16,8 @@ Project itself consists of several directories, such as models, providers, scree
 - `models/`: storing data model structure, supposed to be same/similar structure as that at the server/database
 - `providers/`: contains notifiers and providers, which can cause widgets watching corresponding provider refreshing at state changes. It also is where api call should be held in.
 - `screens/`: storing the two screens 
-- `widgets/`: storing used widgets which is not directly linked to GoRouter to make project neat and clean
 - `utils/`: contains some helper functions which doesn't involve any widget creation
+- `widgets/`: storing used widgets which is not directly linked to GoRouter to make project neat and clean
 
 GoRouter related route config are stored in `route.dart` and reused TextStyle are stored in `text_style.dart` and 
 

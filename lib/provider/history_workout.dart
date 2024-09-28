@@ -56,7 +56,7 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
 
   Future<void> getPastWorkouts() async {
     try {
-      // This is where you should add the api call for getting the data from server
+      /// api call for getting the data from server
 
       // TODO remove sample data and call from api
       List<SetRecord> sampleWorkout1 = [
