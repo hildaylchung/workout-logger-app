@@ -72,14 +72,21 @@ class HistoryWorkoutsStateNotifier extends Notifier<HistoryWorkoutsState> {
         ...List.filled(3, SetRecord(squatExercise, 45, 10)),
       ];
 
+      List<SetRecord> sampleWorkout3 = [
+        SetRecord(shoulderPressExercise, 20, 1),
+      ];
+
       // use uuid or some key generator
       DateTime workoutDate1 = DateTime(2024, 9, 26, 13, 0);
       DateTime workoutDate2 = DateTime(2024, 9, 25, 12, 0);
+      DateTime workoutDate3 = DateTime(2024, 9, 24, 10, 0);
       List<WorkoutModel> pastWorkouts = [
         WorkoutModel(
             workoutDate1.toIso8601String(), sampleWorkout1, workoutDate1),
         WorkoutModel(
-            workoutDate2.toIso8601String(), sampleWorkout2, workoutDate2)
+            workoutDate2.toIso8601String(), sampleWorkout2, workoutDate2),
+        WorkoutModel(
+            workoutDate3.toIso8601String(), sampleWorkout3, workoutDate3)
       ];
 
       state = state.copyWith(
