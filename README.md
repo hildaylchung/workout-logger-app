@@ -4,7 +4,7 @@ A new Flutter project for tracking user workout
 
 ## Getting Started
 
-This project made use of mainly `riverpod` and `GoRoute` packages for creating `WorkoutListScreen` and `WorkoutScreen`. And its main functionalities are logging training workout sessions of a user.
+This project made use of mainly `riverpod` and `GoRouter` packages for creating `WorkoutListScreen` and `WorkoutScreen`. And its main functionalities are logging training workout sessions of a user.
 
 Only following workout exercises are included for now: Barbell row, Bench press, Shoulder press, Deadlift, Squat and user will be able to choose them from a dropdown. 
 
